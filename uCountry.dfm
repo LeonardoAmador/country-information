@@ -2,8 +2,8 @@ object frmCountries: TfrmCountries
   Left = 0
   Top = 0
   Caption = 'Countries'
-  ClientHeight = 432
-  ClientWidth = 622
+  ClientHeight = 601
+  ClientWidth = 546
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -119,8 +119,8 @@ object frmCountries: TfrmCountries
     TabOrder = 2
   end
   object dbnCountries: TDBNavigator
-    Left = 24
-    Top = 256
+    Left = 144
+    Top = 424
     Width = 240
     Height = 25
     DataSource = dsCountries
@@ -178,6 +178,54 @@ object frmCountries: TfrmCountries
     TabOrder = 7
     OnClick = rdbContinentClick
   end
+  object grbSearch: TGroupBox
+    Left = 24
+    Top = 250
+    Width = 504
+    Height = 153
+    Caption = 'Search By: '
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = 'Roboto'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 8
+    object lblSearch: TLabel
+      Left = 12
+      Top = 110
+      Width = 57
+      Height = 20
+      Caption = 'Search:'
+    end
+    object lblChooseOption: TLabel
+      Left = 12
+      Top = 46
+      Width = 63
+      Height = 20
+      Caption = 'Choose:'
+    end
+    object cmbSearch: TComboBox
+      Left = 81
+      Top = 46
+      Width = 232
+      Height = 28
+      ImeName = 'Portuguese (Brazilian ABNT)'
+      TabOrder = 0
+      Items.Strings = (
+        'Name'
+        'Capital')
+    end
+    object dbSearch: TEdit
+      Left = 81
+      Top = 107
+      Width = 232
+      Height = 28
+      ImeName = 'dbSearch'
+      TabOrder = 1
+      OnChange = dbSearchChange
+    end
+  end
   object fdConnection: TFDConnection
     Params.Strings = (
       
@@ -191,22 +239,22 @@ object frmCountries: TfrmCountries
       'DriverID=FB')
     Connected = True
     LoginPrompt = False
-    Left = 152
-    Top = 328
+    Left = 96
+    Top = 488
   end
   object fdTransaction: TFDTransaction
     Connection = fdConnection
-    Left = 256
-    Top = 328
+    Left = 200
+    Top = 488
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
-    Left = 368
-    Top = 328
+    Left = 312
+    Top = 488
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 488
-    Top = 328
+    Left = 432
+    Top = 488
   end
   object qCountries: TFDQuery
     OnCalcFields = qCountriesCalcFields
@@ -215,8 +263,8 @@ object frmCountries: TfrmCountries
     SQL.Strings = (
       'SELECT * FROM country'
       'ORDER BY CountryId;')
-    Left = 152
-    Top = 384
+    Left = 96
+    Top = 544
     object qCountriesCOUNTRYID: TIntegerField
       FieldName = 'COUNTRYID'
       Origin = 'COUNTRYID'
@@ -257,7 +305,7 @@ object frmCountries: TfrmCountries
   end
   object dsCountries: TDataSource
     DataSet = qCountries
-    Left = 256
-    Top = 384
+    Left = 200
+    Top = 544
   end
 end

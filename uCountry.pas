@@ -41,10 +41,16 @@ type
     dbDensity: TDBEdit;
     qCountriesDensity: TFloatField;
     rdbContinent: TRadioGroup;
+    grbSearch: TGroupBox;
+    cmbSearch: TComboBox;
+    lblSearch: TLabel;
+    dbSearch: TEdit;
+    lblChooseOption: TLabel;
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure qCountriesCalcFields(DataSet: TDataSet);
     procedure rdbContinentClick(Sender: TObject);
+    procedure dbSearchChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,6 +63,24 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCountries.dbSearchChange(Sender: TObject);
+begin
+  if cmbSearch.ItemIndex <> -1 then
+    begin
+      qCountries.Close;
+      qCountries.SQL.Clear;
+      qCountries.SQL.Add('SELECT * FROM COUNTRY');
+      qCountries.SQL.Add(' WHERE ' + cmbSearch.Text + ' LIKE ' + #39 + '%' + dbSearch.Text + '%' + #39);
+
+      if rdbContinent.ItemIndex <> 0 then
+        begin
+          qCountries.SQL.Add(' AND CONTINENT = ' + #39 + rdbContinent.Items[rdbContinent.ItemIndex] + #39);
+        end;
+
+      qCountries.Open;
+    end;
+end;
 
 procedure TfrmCountries.FormActivate(Sender: TObject);
 begin
